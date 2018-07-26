@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class NextButton extends Component {
-    render(){
-    return <div>Next Button</div>;
+    render() {
+    return <button onClick={event => console.log(event)} />;
   }
 }
 

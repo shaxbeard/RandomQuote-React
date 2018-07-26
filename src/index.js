@@ -24,7 +24,7 @@ const App = () => {
       <Card />
       <NextButton />
 
-      <button className="btn-next" onClick={nextQuote}></button>
+
     </div>
     ); 
 }
