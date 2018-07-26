@@ -1,41 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Card from './components/card';
+import NextBtn from './components/next_button';
 
-var quoteFull;	
-var quoteArray = [];
-var authorArray = [];
-var i = -1;
-
-(function () { 
-  quoteFull = $.ajax({
+function nextQuote() { 
+  $.ajax({
     url: 'https://talaikis.com/api/quotes/random/',
     type: 'GET', 
     dataType: 'json',
     success: function(data) {
-      quoteArray.push(data.quote);
-      authorArray.push(data.author);
-      i+=1; 
-      console.log(i);
-      console.log(quoteArray[i]);
-    //   document.getElementById("output").innerHTML = quoteArray[i];
-    //   document.getElementById("author").innerHTML = authorArray[i];
+      console.log(data.quote);
+      console.log(data.author);
         }
 }); // AJAX method ??
-})(); // doIt Function
+}; // doIt Function
 
-
-
-// Create a new component. This //component should produce
-// some HTML
+// Create a new component. This //component should produce some HTML
 
 const App = () => {
-    return (
-    <div>
-      <Card />
-    </div>
-    ); 
+  return (
+  <div>
+    <NextBtn className="btn-next" onClick={nextQuote} />
+ 
+  </div>
+  ); 
 }
+
 
 // Take this component’s generated HTML // and put it
 // on the page (in the DOM)
