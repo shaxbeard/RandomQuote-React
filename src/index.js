@@ -2,28 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Card from './components/card';
 
-var quoteFull;	
-var quoteArray = [];
-var authorArray = [];
-var i = -1;
-
-(function () { 
-  quoteFull = $.ajax({
+function nextQuote() { 
+  $.ajax({
     url: 'https://talaikis.com/api/quotes/random/',
     type: 'GET', 
     dataType: 'json',
     success: function(data) {
-      quoteArray.push(data.quote);
-      authorArray.push(data.author);
-      i+=1; 
-      console.log(i);
-      console.log(quoteArray[i]);
-    //   document.getElementById("output").innerHTML = quoteArray[i];
-    //   document.getElementById("author").innerHTML = authorArray[i];
-        }
+      console.log(data.quote);
+    }
 }); // AJAX method ??
-})(); // doIt Function
-
+} // doIt Function
 
 
 // Create a new component. This //component should produce
@@ -33,6 +21,8 @@ const App = () => {
     return (
     <div>
       <Card />
+      
+      <button className="btn-next" onClick={nextQuote}></button>
     </div>
     ); 
 }
