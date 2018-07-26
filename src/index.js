@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Card from './components/card';
+import NextButton from './components/next_button';
 
 function nextQuote() { 
   $.ajax({
@@ -21,6 +22,7 @@ const App = () => {
     return (
     <div>
       <Card />
+      <NextButton />
       
       <button className="btn-next" onClick={nextQuote}></button>
     </div>
