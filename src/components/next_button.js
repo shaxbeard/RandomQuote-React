@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const NextButton = () => {
-    return <div>Next Button</div>
-};
+class NextButton extends Component {
+    render(){
+    return <div>Next Button</div>;
+  }
+}
 
 
 export default NextButton;
