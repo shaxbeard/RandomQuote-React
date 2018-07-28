@@ -1,35 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Card from './components/card';
 import NextButton from './components/next_button';
 
-function nextQuote() { 
-  $.ajax({
-    url: 'https://talaikis.com/api/quotes/random/',
-    type: 'GET', 
-    dataType: 'json',
-    success: function(data) {
-      console.log(data.quote);
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { quotes: [] };
+
+    function nextQuote() { 
+      $.ajax({
+        url: 'https://talaikis.com/api/quotes/random/',
+        type: 'GET', 
+        dataType: 'json',
+        success: (quotes) => {
+          console.log(quotes.quote);
+          this.setState({ quotes });
+        }
+    }); // AJAX method ??
+    } // do It Function
+    nextQuote();
+  }
+    render() {
+      return (
+      <div>
+        <Card />
+        <NextButton />
+      </div>
+      ); 
     }
-}); // AJAX method ??
-} // doIt Function
-
-
-// Create a new component. This //component should produce
-// some HTML
-
-const App = () => {
-    return (
-    <div>
-      <Card />
-      <NextButton />
-
-
-    </div>
-    ); 
 }
-
-// Take this component’s generated HTML // and put it
-// on the page (in the DOM)
 
 ReactDOM.render(<App />, document.querySelector('.container'));
