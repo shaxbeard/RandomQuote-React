@@ -10,20 +10,24 @@ class App extends Component {
     super(props);
 
     this.state = { quotes: [] };
+    
+  } // Does this close the Constructor??
 
-    function nextQuote() { 
-      $.ajax({
-        url: 'https://talaikis.com/api/quotes/random/',
-        type: 'GET', 
-        dataType: 'json',
-        success: (quotes) => {
-          console.log(quotes.quote);
-          this.setState({ quotes });
-        }
-    }); // AJAX method ??
-    } // do It Function
-    nextQuote();
-  }
+componentDidMount(){
+  this.fetchData();
+}
+  
+fetchData(){
+  
+         
+    fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
+    .then(response => response.json())
+    .then(parsedJSON => console.log( parsedJSON.results))
+    .catch(error => console.log('parsing failed', error))
+
+
+  } // Constructor?
+
     render() {
       return (
       <div>
