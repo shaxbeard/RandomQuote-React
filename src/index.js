@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Request from 'superagent';
+
 import Card from './components/card';
 import NextButton from './components/next_button';
-
 
 
 class App extends Component {
@@ -13,20 +14,18 @@ class App extends Component {
     
   } // Does this close the Constructor??
 
-componentDidMount(){
-  this.fetchData();
+componentWillMount(){
+  var url = "http://www.omdbapi.com?s=star&y=&r=json&plot=short";
+  Request.get(url).then((response) => {
+    this.setState({ 
+      movies: response
+    });
+    
+  });
+  
 }
   
-fetchData(){
-  
-         
-    fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
-    .then(response => response.json())
-    .then(parsedJSON => console.log( parsedJSON.results))
-    .catch(error => console.log('parsing failed', error))
 
-
-  } // Constructor?
 
     render() {
       return (
