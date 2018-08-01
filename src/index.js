@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Card from './components/card';
 import NextButton from './components/next_button';
+import QuotesList from './components/quotes_list';
 
 
 
@@ -18,21 +19,35 @@ componentDidMount(){
 }
   
 fetchData(){
-  
-         
-    fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
-    .then(response => response.json())
-    .then(parsedJSON => console.log( parsedJSON.results))
-    .catch(error => console.log('parsing failed', error))
+      
+  fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
+  .then(response => response.json())
+  .then(parsedJSON => parsedJSON.results.map(user => (
+      {
+          name: `${user.name.first} ${user.name.last}`,
+          username: `${user.login.username}`,
+          email: `${user.email}`,
+          location: `${user.location.street}, ${user.location.city}`
+      }
+  )))
+  .then(quotes => this.setState({
+      quotes,
+      isLoading: false
+  }))
+  .catch(error => console.log('parsing failed', error))
+
+  } 
 
 
-  } // Constructor?
+
 
     render() {
       return (
       <div>
         <Card />
+        <QuotesList quotes={this.state.quotes} />
         <NextButton />
+
       </div>
       ); 
     }
