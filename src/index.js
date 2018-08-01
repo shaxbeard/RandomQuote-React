@@ -22,14 +22,7 @@ fetchData(){
       
   fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
   .then(response => response.json())
-  .then(parsedJSON => parsedJSON.results.map(user => (
-      {
-          name: `${user.name.first} ${user.name.last}`,
-          username: `${user.login.username}`,
-          email: `${user.email}`,
-          location: `${user.location.street}, ${user.location.city}`
-      }
-  )))
+  .then(parsedJSON => parsedJSON.results)
   .then(quotes => this.setState({
       quotes,
       isLoading: false
