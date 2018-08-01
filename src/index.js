@@ -37,9 +37,9 @@ fetchData(){
     render() {
       return (
       <div>
-        <Card />
-        <QuotesList quotes={this.state.quotes} />
-        <NextButton />
+      <QuotesList quotes={this.state.quotes} />
+       <Card />
+      <NextButton />
 
       </div>
       ); 
