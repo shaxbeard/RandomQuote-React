@@ -20,7 +20,7 @@ componentDidMount(){
   
 fetchData(){
       
-  fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
+  fetch('http://www.omdbapi.com/?apikey=7988788c&s=star')
   .then(response => response.json())
   .then(parsedJSON => parsedJSON.results)
   .then(quotes => this.setState({

@@ -1,7 +1,8 @@
 import React from 'react';
 
 const QuotesListItem = ({quote}) => {
-    const imageUrl = quote.picture.thumbnail;
+    console.log(quote);
+    const imageUrl = quote.poster;
     return(
         <li className="list-group-item">
         <div className="quote-list media">
@@ -11,7 +12,7 @@ const QuotesListItem = ({quote}) => {
         
         <div className="media-body">
           <div className="media-heading">
-          {quote.email}
+          {quote.Title}
           
          </div>
         
