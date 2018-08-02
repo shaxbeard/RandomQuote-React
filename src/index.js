@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Card from './components/card';
 import NextButton from './components/next_button';
 import QuotesList from './components/quotes_list';
+import QuoteDetail from './components/quote_detail';
 
 
 
@@ -31,14 +32,11 @@ fetchData(){
 
   } 
 
-
-
-
     render() {
       return (
       <div>
+      <QuoteDetail quote={this.state.quotes[0]} />
       <QuotesList quotes={this.state.quotes} />
-       <Card />
       <NextButton />
 
       </div>
