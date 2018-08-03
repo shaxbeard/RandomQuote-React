@@ -1,9 +1,9 @@
 import React from 'react';
 
-const QuotesListItem = ({quote}) => {
+const QuotesListItem = ({quote, onQuoteSelect}) => {
     const imageUrl = quote.picture.thumbnail;
-    return(
-        <li className="list-group-item">
+    return ( 
+        <li onClick={() => onQuoteSelect(quote)}className="list-group-item">
         <div className="quote-list media">
           <div className="media-left">
             <img className="media-object" src= {imageUrl} />

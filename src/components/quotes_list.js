@@ -3,7 +3,12 @@ import QuotesListItem from './quotes_list_item';
 
 const QuotesList = (props) => {
    const quoteItems = props.quotes.map((quote) => {
-        return <QuotesListItem key ={quote.cell} quote={quote} />
+        return (
+        <QuotesListItem 
+            onQuoteSelect={props.onQuoteSelect}
+            key ={quote.cell} 
+            quote={quote} />
+        );
     });
 
 

@@ -5,38 +5,36 @@ import NextButton from './components/next_button';
 import QuotesList from './components/quotes_list';
 import QuoteDetail from './components/quote_detail';
 
-
-
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { quotes: [] };
-    
-  } // Does this close the Constructor??
+    this.state = { 
+      quotes: [],
+      selectedQuote: null 
+    };
+  } 
 
 componentDidMount(){
   this.fetchData();
 }
-  
-fetchData(){
-      
+fetchData(){    
   fetch('https://randomuser.me/api/?results=50&nat=us,dk,fr,gb')
   .then(response => response.json())
   .then(parsedJSON => parsedJSON.results)
   .then(quotes => this.setState({
-      quotes,
-      isLoading: false
-  }))
+      quotes: quotes,
+      selectedQuote: quotes[0]
+      }))
   .catch(error => console.log('parsing failed', error))
-
   } 
 
     render() {
       return (
       <div>
-      <QuoteDetail quote={this.state.quotes[0]} />
-      <QuotesList quotes={this.state.quotes} />
+      <QuoteDetail quote={this.state.selectedQuote} />
+      <QuotesList
+      onQuoteSelect={selectedQuote => this.setState({selectedQuote}) }
+      quotes={this.state.quotes} />
       <NextButton />
 
       </div>
